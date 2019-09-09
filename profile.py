@@ -207,8 +207,8 @@ if params.install_gnuradio:
 for i, x310_radio in enumerate(params.x310_radios):
     x310_node_pair(i, x310_radio, params.x310_pair_nodetype, installs)
 
-for i, b210_node in enumerate(params.b210_nodes, installs):
-    b210_nuc_pair(i, b210_node)
+for i, b210_node in enumerate(params.b210_nodes):
+    b210_nuc_pair(i, b210_node, installs)
 
 
 portal.context.printRequestRSpec()
