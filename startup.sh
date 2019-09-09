@@ -12,6 +12,7 @@ do
         srslte)
             sudo DEBIAN_FRONTEND=noninteractive apt-get install -y srslte
             ;;
+    esac
 done
 
 sudo "/usr/lib/uhd/utils/uhd_images_downloader.py"
