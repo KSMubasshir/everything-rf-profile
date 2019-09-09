@@ -198,10 +198,10 @@ params = portal.context.bindParameters()
 request = portal.context.makeRequestRSpec()
 
 installs = []
-if portal.install_srslte:
+if params.install_srslte:
     installs.append("srslte")
 
-if portal.install_gnuradio:
+if params.install_gnuradio:
     installs.append("gnuradio")
 
 for i, x310_radio in enumerate(params.x310_radios):
