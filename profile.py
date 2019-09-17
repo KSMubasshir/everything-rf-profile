@@ -122,7 +122,7 @@ portal.context.defineStructParameter("x310_radios", "X310 Radios", [],
                                      multiValue=True,
                                      itemDefaultValue=
                                      {"node_name": "x310-node-{idx}"},
-                                     min=1, max=None,
+                                     min=0, max=None,
                                      members=[
                                          portal.Parameter(
                                              "radio_name",
@@ -164,7 +164,7 @@ portal.context.defineStructParameter("b210_nodes", "Add Node", [],
                                      itemDefaultValue=
                                      {"component_id": "nuc2",
                                       "node_name": "b210-node-{idx}"},
-                                     min=1, max=None,
+                                     min=0, max=None,
                                      members=[
                                          portal.Parameter(
                                              "component_id",
