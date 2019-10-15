@@ -155,7 +155,9 @@ fixed_endpoint_aggregates = [
     ("urn:publicid:IDN+madsen.powderwireless.net+authority+cm",
      "Madsen Clinic"),
     ("urn:publicid:IDN+sagepoint.powderwireless.net+authority+cm",
-     "Sage Point")
+     "Sage Point"),
+    ("urn:publicid:IDN+moran.powderwireless.net+authority+cm",
+     "Moran Eye Center"),
 ]
 
 
