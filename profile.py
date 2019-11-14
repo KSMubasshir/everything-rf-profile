@@ -102,7 +102,8 @@ def x310_node_pair(idx, x310_radio, node_type, installs):
 
 def b210_nuc_pair(idx, b210_node, installs):
     node_name = b210_node.node_name.format(idx=idx)
-    b210_nuc_pair_node = request.RawPC("b210-nuc-pair-%d"%(idx))
+    b210_nuc_pair_node = request.RawPC(b210_node.node_name.format(
+        idx=idx))
     b210_nuc_pair_node.component_manager_id = b210_node.aggregate_id
     b210_nuc_pair_node.component_id = b210_node.component_id
 
@@ -198,6 +199,9 @@ portal.context.defineParameter("install_gnuradio",
 params = portal.context.bindParameters()
 
 request = portal.context.makeRequestRSpec()
+
+request.requestSpectrum(2560, 2570, 100)
+request.requestSpectrum(2680, 2690, 100)
 
 installs = []
 if params.install_srslte:
