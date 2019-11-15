@@ -197,12 +197,75 @@ portal.context.defineParameter("install_gnuradio",
                                "etc come from be installed?",
                                portal.ParameterType.BOOLEAN, True)
 
+channel_bandwidth_strings = [
+    ('1.4', '1.4 MHz'),
+    ('3', '3 MHz'),
+    ('5', '5 MHz'),
+    ('10', '10 MHz'),
+    ('15', '15 MHz'),
+    ('20', '20 MHz'),
+]
+
+# n PRB, width of frequency to allocate
+channel_bandwidths = {
+    '1.4': (6, 1.4),
+    '3': (15, 3),
+    '5': (25, 5),
+    '10': (50, 10),
+    '15': (75, 15),
+    '20': (100, 20),
+}
+
+portal.context.defineStructParameter("frequency_config",
+                                     "Channel Configuration for LTE",
+                                     [{'downlink_frequency': 2685.0,
+                                       'channel_bandwidth': '1.4'}],
+                                     multiValue=True, min=0, max=1,
+                                     members=[
+                                         portal.Parameter(
+                                             "downlink_frequency",
+                                             "Downlink Frequency in MHz (will "
+                                             "be rounded to nearest 100 kHz) "
+                                             "must be in Band 7",
+                                             portal.ParameterType.BANDWIDTH,
+                                             2685.0),
+                                         portal.Parameter(
+                                             "channel_bandwidth",
+                                             "Channel Bandwidth",
+                                             portal.ParameterType.STRING,
+                                             channel_bandwidth_strings[0],
+                                             channel_bandwidth_strings),
+                                     ],)
+
 params = portal.context.bindParameters()
 
 request = portal.context.makeRequestRSpec()
 
-request.requestSpectrum(2560, 2570, 100)
-request.requestSpectrum(2680, 2690, 100)
+if len(params.frequency_config) > 0:
+    downlink_frequency = params.frequency_config[0].downlink_frequency
+    downlink_earfcn = downlink_frequency
+
+    centi_khz = downlink_frequency * 10
+    centi_khz = round(centi_khz)
+
+    if centi_khz < 26200:
+        raise Exception("Too low of a downlink frequency for band 7")
+    if centi_khz > 26899:
+        raise Exception("Too high of a downlink frequency for band 7")
+
+    earfcn = centi_khz - 26200 + 2750
+
+    channel_bandwidth_str = params.frequency_config[0].channel_bandwidth
+    n_prb, bandwidth = channel_bandwidths[channel_bandwidth_str]
+
+    low_downlink_frequency = downlink_frequency - bandwidth/2
+    high_downlink_frequency = downlink_frequency - bandwidth/2
+    low_uplink_frequency = downlink_frequency - bandwidth/2 - 120
+    high_uplink_frequency = downlink_frequency - bandwidth/2 - 120
+
+    request.requestSpectrum(low_downlink_frequency, high_downlink_frequency,
+                            100)
+    request.requestSpectrum(low_uplink_frequency, high_uplink_frequency, 100)
 
 installs = []
 if params.install_srslte:
