@@ -251,7 +251,7 @@ if len(params.frequency_config) > 0:
     downlink_earfcn = downlink_frequency
 
     centi_khz = downlink_frequency * 10
-    centi_khz = round(centi_khz)
+    centi_khz = int(round(centi_khz))
 
     if centi_khz < 26200:
         raise Exception("Too low of a downlink frequency for band 7")
