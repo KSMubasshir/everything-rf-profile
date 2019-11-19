@@ -278,7 +278,7 @@ if len(params.frequency_config) > 0:
     installs.append(channel_setup_format_string.format(n_prb=n_prb,
                                                        earfcn=earfcn,
                                                        ul_amp=ul_amp,
-                                                       dl_gain=dl_gain)
+                                                       dl_gain=dl_gain))
 
 if params.install_srslte:
     installs.append("srslte")
