@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# Get the ettus PPA for the drivers
-while ! sudo add-apt-repository -y ppa:ettusresearch/uhd
-do
-    echo Failed to get ettusreasearch ppa, retrying
-done
-
 # Get the emulab repo 
 while ! wget -qO - http://repos.emulab.net/emulab.key | sudo apt-key add -
 do
@@ -16,10 +10,7 @@ while ! sudo add-apt-repository -y http://repos.emulab.net/powder/ubuntu/
 do
     echo Failed to get johnsond ppa, retrying
 done
-#while ! sudo add-apt-repository -y ppa:johnsond-u/sdr
-#do
-#    echo Failed to get johnsond ppa, retrying
-#done
+
 while ! sudo apt-get update
 do
     echo Failed to update, retrying
@@ -46,7 +37,7 @@ do
             ;;
 
         srslte)
-            while ! sudo DEBIAN_FRONTEND=noninteractive apt-get install -y srslte
+            while ! sudo DEBIAN_FRONTEND=noninteractive apt-get install -y srslte uhd-host
             do
                 echo Failed to get srsLTE, retrying
             done
