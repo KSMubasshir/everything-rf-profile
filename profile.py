@@ -240,6 +240,26 @@ portal.context.defineStructParameter("frequency_config",
                                              channel_bandwidth_strings),
                                      ],)
 
+portal.context.defineStructParameter("frequency_ranges",
+                                     "Extra Transmit Frequencies "
+                                     "(other than LTE)", [],
+                                     multiValue=True,
+                                     itemDefaultValue=
+                                     {},
+                                     min=0, max=None,
+                                     members=[
+                                         portal.Parameter(
+                                             "frequency_low",
+                                             "Start frequency (MHz)",
+                                             portal.ParameterType.BANDWIDTH,
+                                             0.0),
+                                         portal.Parameter(
+                                             "frequency_high",
+                                             "Stop frequency (MHz)",
+                                             portal.ParameterType.BANDWIDTH,
+                                             0.0)
+                                     ])
+
 params = portal.context.bindParameters()
 
 request = portal.context.makeRequestRSpec()
@@ -279,6 +299,13 @@ if len(params.frequency_config) > 0:
                                                        earfcn=earfcn,
                                                        ul_amp=ul_amp,
                                                        dl_gain=dl_gain))
+
+
+for frequency_range in params.frequency_ranges:
+    request.requestSpectrum(frequency_range.frequency_low,
+                            frequency_range.frequency_high,
+                            100)
+
 
 if params.install_srslte:
     installs.append("srslte")
