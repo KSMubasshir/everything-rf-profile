@@ -71,9 +71,9 @@ import geni.rspec.emulab.spectrum as spectrum
 
 
 x310_node_disk_image = \
-        "urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU18-64-STD"
+        "urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU20-64-STD"
 b210_node_disk_image = \
-        "urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU18-64-STD"
+        "urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU20-64-STD"
 
 setup_command = "/local/repository/startup.sh"
 
