@@ -189,6 +189,9 @@ portal.context.defineStructParameter("b210_nodes", "Add Node", [],
                                      ],
                                     )
 
+portal.context.defineParameter("install_python_bindings",
+                               "Should Python UHD bindings be installed?",
+                               portal.ParameterType.BOOLEAN, True)
 portal.context.defineParameter("install_srslte",
                                "Should srsLTE Radio be installed?",
                                portal.ParameterType.BOOLEAN, True)
@@ -315,6 +318,9 @@ if params.install_gnuradio:
 
 if params.install_gnuradio_companion:
     installs.append("gnuradio-companion")
+
+if params.install_python_bindings:
+    installs.append("python-bindings")
 
 for i, x310_radio in enumerate(params.x310_radios):
     x310_node_pair(i, x310_radio, params.x310_pair_nodetype, installs)

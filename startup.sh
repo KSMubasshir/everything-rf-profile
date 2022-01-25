@@ -22,6 +22,13 @@ for thing in $*
 do
     cmd=(`echo $thing | tr '-' '\n'`)
     case ${cmd[0]} in
+        python-bindings)
+            while ! sudo DEBIAN_FRONTEND=noninteractive apt-get install -y python3-uhd uhd-host libuhd-dev
+            do
+                echo Failed to get uhd python bindings, retrying
+            done
+            ;;
+
         gnuradio)
             while ! sudo DEBIAN_FRONTEND=noninteractive apt-get install -y gnuradio
             do
