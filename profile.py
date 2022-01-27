@@ -70,11 +70,6 @@ import geni.rspec.igext as ig
 import geni.rspec.emulab.spectrum as spectrum
 
 
-x310_node_disk_image = \
-        "urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU20-64-STD"
-b210_node_disk_image = \
-        "urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU20-64-STD"
-
 setup_command = "/local/repository/startup.sh"
 
 
@@ -189,6 +184,25 @@ portal.context.defineStructParameter("b210_nodes", "Add Node", [],
                                      ],
                                     )
 
+disk_images = [
+    ("urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU20-64-STD",
+     "Ubuntu20"),
+    ("urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU18-64-STD",
+     "Ubuntu18"),
+]
+
+portal.context.defineParameter("x310_node_disk_image",
+                               "Disk image for X310 compute nodes",
+                               portal.ParameterType.STRING,
+                               disk_images[0],
+                               disk_images)
+
+portal.context.defineParameter("b210_node_disk_image",
+                               "Disk image for X310 compute nodes",
+                               portal.ParameterType.STRING,
+                               disk_images[0],
+                               disk_images)
+
 portal.context.defineParameter("install_python_bindings",
                                "Should Python UHD bindings be installed?",
                                portal.ParameterType.BOOLEAN, True)
@@ -264,6 +278,10 @@ portal.context.defineStructParameter("frequency_ranges",
                                      ])
 
 params = portal.context.bindParameters()
+
+# This needs to be done before x310_node_pair and b210_nuc_pair are called
+x310_node_disk_image = params.x310_node_disk_image
+b210_node_disk_image = params.b210_node_disk_image
 
 request = portal.context.makeRequestRSpec()
 
