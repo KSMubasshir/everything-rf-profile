@@ -335,10 +335,10 @@ if params.install_gnuradio:
     installs.append("gnuradio")
 
 if params.install_gnuradio_companion:
-    installs.append("gnuradio-companion")
+    installs.append("gnuradio_companion")
 
 if params.install_python_bindings:
-    installs.append("python-bindings")
+    installs.append("python_bindings")
 
 for i, x310_radio in enumerate(params.x310_radios):
     x310_node_pair(i, x310_radio, params.x310_pair_nodetype, installs)

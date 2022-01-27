@@ -22,7 +22,7 @@ for thing in $*
 do
     cmd=(`echo $thing | tr '-' '\n'`)
     case ${cmd[0]} in
-        python-bindings)
+        python_bindings)
             while ! sudo DEBIAN_FRONTEND=noninteractive apt-get install -y python3-uhd uhd-host libuhd-dev
             do
                 echo Failed to get uhd python bindings, retrying
@@ -36,7 +36,7 @@ do
             done
             ;;
 
-        gnuradio-companion)
+        gnuradio_companion)
             while ! sudo DEBIAN_FRONTEND=noninteractive apt-get install -y gnuradio libgtk-3-dev gir1.2-gtk-3.0 python3-gi gobject-introspection python3-gi-cairo
             do
                 echo Failed to get gnuradio, retrying
