@@ -294,12 +294,12 @@ if len(params.frequency_config) > 0:
     centi_khz = downlink_frequency * 10
     centi_khz = int(round(centi_khz))
 
-    if centi_khz < 26200:
+    if centi_khz < 24200:
         raise Exception("Too low of a downlink frequency for band 7")
-    if centi_khz > 26899:
+    if centi_khz > 24799:
         raise Exception("Too high of a downlink frequency for band 7")
 
-    earfcn = centi_khz - 26200 + 2750
+    earfcn = centi_khz - 24200 + 2750
 
     channel_bandwidth_str = params.frequency_config[0].channel_bandwidth
     n_prb, bandwidth, ul_amp, dl_gain = \
