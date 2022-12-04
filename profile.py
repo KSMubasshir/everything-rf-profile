@@ -307,8 +307,8 @@ if len(params.frequency_config) > 0:
 
     low_downlink_frequency = downlink_frequency - bandwidth/2
     high_downlink_frequency = downlink_frequency + bandwidth/2
-    low_uplink_frequency = downlink_frequency - bandwidth/2 - 60
-    high_uplink_frequency = downlink_frequency + bandwidth/2 - 600
+    low_uplink_frequency = downlink_frequency - bandwidth/2 - 50
+    high_uplink_frequency = downlink_frequency + bandwidth/2 - 50
 
     request.requestSpectrum(low_downlink_frequency, high_downlink_frequency,
                             50)
