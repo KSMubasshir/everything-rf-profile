@@ -238,7 +238,7 @@ channel_bandwidths = {
 
 portal.context.defineStructParameter("frequency_config",
                                      "Channel Configuration for LTE",
-                                     [{'downlink_frequency': 2450.0,
+                                     [{'downlink_frequency': 2480.0,
                                        'channel_bandwidth': '1.4'}],
                                      multiValue=True, min=0, max=1,
                                      members=[
@@ -248,7 +248,7 @@ portal.context.defineStructParameter("frequency_config",
                                              "be rounded to nearest 100 kHz) "
                                              "must be in Band 7",
                                              portal.ParameterType.BANDWIDTH,
-                                             2450.0),
+                                             2480.0),
                                          portal.Parameter(
                                              "channel_bandwidth",
                                              "Channel Bandwidth",
@@ -307,12 +307,12 @@ if len(params.frequency_config) > 0:
 
     low_downlink_frequency = downlink_frequency - bandwidth/2
     high_downlink_frequency = downlink_frequency + bandwidth/2
-    low_uplink_frequency = downlink_frequency - bandwidth/2 - 120
-    high_uplink_frequency = downlink_frequency + bandwidth/2 - 120
+    low_uplink_frequency = downlink_frequency - bandwidth/2 - 60
+    high_uplink_frequency = downlink_frequency + bandwidth/2 - 600
 
     request.requestSpectrum(low_downlink_frequency, high_downlink_frequency,
-                            100)
-    request.requestSpectrum(low_uplink_frequency, high_uplink_frequency, 100)
+                            50)
+    request.requestSpectrum(low_uplink_frequency, high_uplink_frequency, 50)
 
     channel_setup_format_string = ("channel_setup-{n_prb}-{earfcn}-{ul_amp}-"
                                     "{dl_gain}")
