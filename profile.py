@@ -322,10 +322,10 @@ if len(params.frequency_config) > 0:
                                                        dl_gain=dl_gain))
 
 
-for frequency_range in params.frequency_ranges:
-    request.requestSpectrum(frequency_range.frequency_low,
-                            frequency_range.frequency_high,
-                            100)
+# for frequency_range in params.frequency_ranges:
+#     request.requestSpectrum(frequency_range.frequency_low,
+#                             frequency_range.frequency_high,
+#                             100)
 
 
 if params.install_srslte:
