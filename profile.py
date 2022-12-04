@@ -238,7 +238,7 @@ channel_bandwidths = {
 
 portal.context.defineStructParameter("frequency_config",
                                      "Channel Configuration for LTE",
-                                     [{'downlink_frequency': 2685.0,
+                                     [{'downlink_frequency': 2450.0,
                                        'channel_bandwidth': '1.4'}],
                                      multiValue=True, min=0, max=1,
                                      members=[
@@ -248,7 +248,7 @@ portal.context.defineStructParameter("frequency_config",
                                              "be rounded to nearest 100 kHz) "
                                              "must be in Band 7",
                                              portal.ParameterType.BANDWIDTH,
-                                             2685.0),
+                                             2450.0),
                                          portal.Parameter(
                                              "channel_bandwidth",
                                              "Channel Bandwidth",
